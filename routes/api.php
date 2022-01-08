@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\V1\MenuController;
+use App\Http\Controllers\API\V1\FoodController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::namespace('V1')->prefix('v1')->group(function (): void {
+    Route::get('menu', [FoodController::class, 'index']);
+    Route::post('order', [FoodController::class, 'order']);
+});
